@@ -3,11 +3,23 @@ defmodule Tile38.MixProject do
 
   def project do
     [
-      app: :tile38,
+      app: :ex_tile38,
       version: "0.1.0",
       elixir: "~> 1.11",
+      build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      description:
+        "Elixir wrapper for Tile38 client. Formats responses to common queries for convenience.",
+      package: package()
+    ]
+  end
+
+  defp package do
+    [
+      maintainers: ["lpender"],
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/lunchtime-labs/ex_tile38"}
     ]
   end
 

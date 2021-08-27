@@ -1,6 +1,6 @@
 defmodule Tile38 do
   @moduledoc """
-  Elixir wrapper for [Tile38](https://tile38.com/). Formats responses to common queries for convenience.
+  Elixir wrapper for [Tile38](https://tile38.com/) client. Formats responses to common queries for convenience.
 
   ## Getting started
 
@@ -9,6 +9,7 @@ defmodule Tile38 do
   ```
   # mix.exs
     defp deps do
+      {:ex_tile38, ">= 0.0.0"},
       {:redix, ">= 0.0.0"}
     end
   ```
