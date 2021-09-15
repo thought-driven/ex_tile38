@@ -45,7 +45,7 @@ defmodule Tile38 do
 
       iex> Tile38.t38("set mycollection my_id field firstfield 10 field secondfield 20 point 10 -10 123")
       iex> Tile38.f38("get mycollection my_id withfields")
-      %{
+      %Tile38.F38{
         fields: %{
           firstfield: "10",
           secondfield: "20"
@@ -72,7 +72,7 @@ defmodule Tile38 do
 
         fields = list_to_map(fields, %{})
 
-        %{
+        %Tile38.F38{
           coordinates: coordinates,
           fields: fields
         }
@@ -82,7 +82,7 @@ defmodule Tile38 do
 
         coordinates = %{type: type, lat: lat, lng: lng, timestamp: List.first(timestamp)}
 
-        %{
+        %Tile38.F38{
           coordinates: coordinates
         }
     end
