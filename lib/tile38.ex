@@ -29,8 +29,8 @@ defmodule Tile38 do
   @doc """
     Clear the entire Tile38 database.
   """
-  def clear_database() do
-    t38("flushdb")
+  def clear_database(redix_key \\ @default_redix_key) do
+    t38("flushdb", redix_key)
   end
 
   @doc """
@@ -85,6 +85,9 @@ defmodule Tile38 do
         %Tile38.Point{
           coordinates: coordinates
         }
+
+      {:error, err} ->
+        {:error, err}
     end
   end
 
@@ -106,6 +109,9 @@ defmodule Tile38 do
     resp = t38(command, redix_key)
 
     case resp do
+      {:error, err} ->
+        {:error, err}
+
       nil ->
         nil
 
@@ -124,8 +130,8 @@ defmodule Tile38 do
 
   ## Examples
 
-      iex> Tile38.t38("set mycollection my_id field firstfield 10 point 10 -10 1000")
-      iex> Tile38.n38("nearby mycollection point 10 -10")
+      iex> t38("set mycollection my_id field firstfield 10 point 10 -10 1000")
+      iex> n38("nearby mycollection point 10 -10")
       [
         %Tile38.Point{
           id: "my_id",
@@ -150,6 +156,9 @@ defmodule Tile38 do
 
       [_, data] ->
         parse_nearby(data, [])
+
+      {:error, err} ->
+        {:error, err}
     end
   end
 
@@ -168,10 +177,13 @@ defmodule Tile38 do
       [~s/{"type":"Point","coordinates":[-10,10,1000]}/, ["firstfield", "10"] ]
   """
   def t38(command, redix_key \\ @default_redix_key) do
-    # IO.inspect(command)
-    {:ok, resp} = Redix.command(redix_key, ~w(#{command}))
-    # IO.inspect(resp)
-    resp
+    case Redix.command(redix_key, ~w(#{command})) do
+      {:ok, resp} ->
+        resp
+
+      {:error, err} ->
+        {:error, err}
+    end
   end
 
   # Private methods
