@@ -63,7 +63,7 @@ defmodule Tile38 do
 
     case resp do
       nil ->
-        []
+        nil
 
       [point, fields] ->
         %{type: type, coordinates: [lng, lat | timestamp]} = Jason.decode!(point, keys: :atoms)
@@ -130,8 +130,8 @@ defmodule Tile38 do
 
   ## Examples
 
-      iex> t38("set mycollection my_id field firstfield 10 point 10 -10 1000")
-      iex> n38("nearby mycollection point 10 -10")
+      iex> Tile38.t38("set mycollection my_id field firstfield 10 point 10 -10 1000")
+      iex> Tile38.n38("nearby mycollection point 10 -10")
       [
         %Tile38.Point{
           id: "my_id",

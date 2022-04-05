@@ -72,7 +72,7 @@ defmodule Tile38Test do
 
       result = f38("get participants #{id} withfields")
 
-      assert(result == [])
+      assert(result == nil)
     end
   end
 
