@@ -32,5 +32,13 @@ Notice that we give this connection the name `tile38`.
 {:ok, _} = Redix.start_link("redis://localhost:9851/", name: :tile38)
 ```
 
+## Changelog
+
+See `Changelog` for details on breaking changes.
+
+Upgrading to 0.4.0:
+
+Any calls to `f38` should expect `nil` instead of `[]` as a response if there are no values returned.
+
 See documentation on usage at [https://hexdocs.pm/ex_tile38](https://hexdocs.pm/ex_tile38).
 
