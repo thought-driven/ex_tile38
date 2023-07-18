@@ -176,8 +176,20 @@ defmodule Tile38 do
       iex> Tile38.t38("get mycollection my_id withfields")
       [~s/{"type":"Point","coordinates":[-10,10,1000]}/, ["firstfield", "10"] ]
   """
-  def t38(command, redix_key \\ @default_redix_key) do
+  def t38(command, redix_key \\ @default_redix_key)
+
+  def t38(command, redix_key) when is_bitstring(command) do
     case Redix.command(redix_key, ~w(#{command})) do
+      {:ok, resp} ->
+        resp
+
+      {:error, err} ->
+        {:error, err}
+    end
+  end
+
+  def t38(command, redix_key) when is_list(command) do
+    case Redix.command(redix_key, command) do
       {:ok, resp} ->
         resp
 
