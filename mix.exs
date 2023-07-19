@@ -5,7 +5,7 @@ defmodule Tile38.MixProject do
     [
       app: :ex_tile38,
       version: "0.5.0",
-      elixir: "~> 1.11",
+      elixir: "~> 1.14.3",
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
       deps: deps(),
