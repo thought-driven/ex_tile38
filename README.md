@@ -36,9 +36,16 @@ Notice that we give this connection the name `tile38`.
 
 See `Changelog` for details on breaking changes.
 
+Upgrading to 0.5.0:
+
+`t38` method, in addition to accepting a command string, can now accept a list of commands. This change allows for setting fields with string values containing spaces.
+
+```
+t38(["SET", "player", "123", "FIELD", "address", "123 Road St","POINT", -100.0, 99.9])
+```
+
 Upgrading to 0.4.0:
 
 Any calls to `f38` should expect `nil` instead of `[]` as a response if there are no values returned.
 
 See documentation on usage at [https://hexdocs.pm/ex_tile38](https://hexdocs.pm/ex_tile38).
-

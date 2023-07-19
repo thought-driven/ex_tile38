@@ -17,7 +17,7 @@ defmodule Tile38.MixProject do
 
   defp package do
     [
-      maintainers: ["lpender"],
+      maintainers: ["lpender", "anwsimon"],
       licenses: ["MIT"],
       links: %{"GitHub" => "https://github.com/lunchtime-labs/ex_tile38"}
     ]
